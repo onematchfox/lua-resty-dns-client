@@ -467,7 +467,7 @@ local function schedule_dns_renewal(host)
   -- the future, so by then the background query is complete and that second call
   -- to queryDns will do the actual updates. Without math.max is would create a
   -- busy loop and hang.
-  local new_renew_at = math.max(ngx.now(), record_expiry) + 0.5
+  local new_renew_at = math.max(ngx.now(), record_expiry) + 1
   local old_renew_at = renewal_heap:valueByPayload(key)
 
   -- always store the host in the registry, because the same key might be reused
